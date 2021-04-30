@@ -91,19 +91,6 @@ function getComputerChoice() {
   return possibleChoices[computerChoice];
 }
 
-//Ganador
-
-function setWinner(hpPlayer, hpComputer) {
-  
-  if (
-    (hpPlayer > hpComputer)
-  ) {
-    return "GANASTE";
-  }else {
-    return "PERDISTE";
-  }
-}
-
 //Funcion Ataques
 function attack1(playerChoice, computerChoice){
   
@@ -131,6 +118,17 @@ function attack2(){
     ElementHpComputer.textContent =`HP: ${hpComputer}`;
   }
 
+//Ganador
+function setWinner(hpPlayer, hpComputer) {
 
+  if (
+    (hpComputer <= 0 && hpPlayer > 0)
+  ) {
+    return "GANASTE";
+  } elseif((hpPlayer <= 0 && hpComputer > 0))
+  {
+    return "PERDISTE";
+  }
+}
 
   

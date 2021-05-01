@@ -1,3 +1,8 @@
+//index.html
+
+
+
+//battle.html
 const playerChoiceElement = document.getElementById("playerChoice");
 const computerChoiceElement = document.getElementById("computerChoice");
 
@@ -22,22 +27,22 @@ buttonbulbasaur.addEventListener("click", startGame);
 buttoncharmander.addEventListener("click", startGame);
 buttonsquirtle.addEventListener("click", startGame);
 
-function playBulbaSound(){
-    const musicSound = document.getElementById("SoundBulbasaur");
+function playBulbaSound() {
+  const musicSound = document.getElementById("SoundBulbasaur");
 
-    musicSound.play();
+  musicSound.play();
 }
 
-function playCharmaSound(){
-    const musicSound = document.getElementById("SoundCharmander");
+function playCharmaSound() {
+  const musicSound = document.getElementById("SoundCharmander");
 
-    musicSound.play();
+  musicSound.play();
 }
 
-function playSquirSound(){
-    const musicSound = document.getElementById("SoundSquirtle");
+function playSquirSound() {
+  const musicSound = document.getElementById("SoundSquirtle");
 
-    musicSound.play();
+  musicSound.play();
 }
 
 var hpComputer = 100;
@@ -45,7 +50,7 @@ var hpPlayer = 100;
 
 function startGame(event) {
 
-  document.getElementById("battlezone").style.display = "block";
+  document.getElementById("battle-zone").style.display = "block";
 
   // Obtener elección del jugador
   const button = event.currentTarget;
@@ -72,12 +77,13 @@ function startGame(event) {
   attackType.addEventListener("click", attack1(playerChoice, computerChoice));
   attackNormal.addEventListener("click", attack2);
 
-  /* ElementHpComputer.textContent =`HP: ${hpComputer}`; */
-
-  
+  ElementHpComputer.textContent = `HP: ${hpComputer}`;
+  attackNormal.addEventListener("click", attack2);
+  ElementHpComputer.textContent = `HP: ${hpComputer}`;
 
   // Calcular ganador
   const winner = setWinner(hpPlayer, hpComputer);
+  resultElement.textContent = winner;
 }
 
 //Obtiene pokemon de computer
@@ -92,8 +98,8 @@ function getComputerChoice() {
 }
 
 //Funcion Ataques
-function attack1(playerChoice, computerChoice){
-  
+function attack1(playerChoice, computerChoice) {
+
   if (
     (playerChoice === "bulbasaur" && computerChoice === "squirtle") ||
     (playerChoice === "charmander" && computerChoice === "bulbasaur") ||
@@ -101,34 +107,35 @@ function attack1(playerChoice, computerChoice){
   ) {
     hpComputer -= 40;
     alert("Attack1, -40");
-    } else if (playerChoice === computerChoice) {
+  } else if (playerChoice === computerChoice) {
     hpComputer -= 30;
     alert("Attack1, -30");
   } else {
     hpComputer -= 20;
     alert("Attack1, -20");
   }
-  ElementHpComputer.textContent =`HP: ${hpComputer}`;
-  
+  /* ElementHpComputer.textContent =`HP: ${hpComputer}`; */
+
 }
 
-function attack2(){
+function attack2() {
   hpComputer -= 20;
-    alert("Attack2, -20");
-    ElementHpComputer.textContent =`HP: ${hpComputer}`;
-  }
+  alert("Attack2, -20");
+  /*   ElementHpComputer.textContent = `HP: ${hpComputer}`;*/
+}
 
 //Ganador
+
 function setWinner(hpPlayer, hpComputer) {
 
-  if (
-    (hpComputer <= 0 && hpPlayer > 0)
-  ) {
+  if (hpComputer <= 0) {
     return "GANASTE";
-  } elseif((hpPlayer <= 0 && hpComputer > 0))
+  } elseif(hpPlayer <= 0)
   {
     return "PERDISTE";
   }
 }
 
-  
+
+
+

@@ -1,0 +1,6 @@
+Al ejecutar la función startGame(linea 46 .js), se me ejecuta automaticamente la funcion attack1(linea 108 .js).
+El elemento attackType(linea 68) tiene un evento (linea72) que no me está funcionando por el problema de que la función startGame lo está ejecutando (o eso supongo yo) y eso me inhabilita a usarlo repetidas veces.
+La función attack2(linea 129), no me está modificando el elemento ElementHpComputer (linea 70).
+Tengo una duda con respecto a los ataques que realiza la pc, implemento una función random muy similar a la de la elección del pokemon que me devuelva un 1 o 2 y que eso llame a la función attack1 o attack2, con sus respectivas modificaciones (que tambien tengo dudas en como realizarlo) o creo funciones nuevas?
+La función setWinner (linea 122) no me funciona.
+Tengo que crear una función que me resetee el hp de ambos players cuando se clickee sobre el botón para elegir un pokemon que se llame dentro de la función start pero cuando la creo e implemento, me la llama constantemente, cómo lo tengo que hacer? Porque no le estoy encontrando la vuelta.

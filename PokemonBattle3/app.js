@@ -129,10 +129,10 @@ function attack2() {
 function setWinner(hpPlayer, hpComputer) {
 
   if (hpComputer <= 0) {
-    return "GANASTE";
+    return alert("GANASTE");
   } elseif(hpPlayer <= 0)
   {
-    return "PERDISTE";
+    return ("PERDISTE");
   }
 }
 

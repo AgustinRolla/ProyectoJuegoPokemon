@@ -1,7 +1,3 @@
-//index.html
-
-
-
 //battle.html
 const playerChoiceElement = document.getElementById("playerChoice");
 const computerChoiceElement = document.getElementById("computerChoice");
@@ -48,6 +44,12 @@ function playSquirSound() {
 var hpComputer = 100;
 var hpPlayer = 100;
 
+const attackElement = document.getElementById("attack1");
+const attackNormal = document.getElementById("attack2");
+const attackType = document.getElementById("attack1");
+const ElementHpPlayer = document.getElementById("hp-player");
+const ElementHpComputer = document.getElementById("hp-computer");
+
 function startGame(event) {
 
   document.getElementById("battle-zone").style.display = "block";
@@ -63,27 +65,17 @@ function startGame(event) {
   //Pokemon elegido por player
   playerChoiceElement.setAttribute("src", `imgs/${playerChoice}.png`);
   //Ataques del pokemon elegido por player
-  const attackElement = document.getElementById("attack1");
-  const attackNormal = document.getElementById("attack2");
+
   attackElement.setAttribute("src", `imgs/attacks/${playerChoice}.png`);
   //Pokemon elegido por computer
   computerChoiceElement.setAttribute("src", `imgs/${computerChoice}.png`);
 
   //Ataques
-  const attackType = document.getElementById("attack1");
-  const ElementHpPlayer = document.getElementById("hp-player");
-  const ElementHpComputer = document.getElementById("hp-computer");
 
-  attackType.addEventListener("click", attack1(playerChoice, computerChoice));
+  attackType.addEventListener("click", () => attack1(playerChoice, computerChoice));
   attackNormal.addEventListener("click", attack2);
 
-  ElementHpComputer.textContent = `HP: ${hpComputer}`;
-  attackNormal.addEventListener("click", attack2);
-  ElementHpComputer.textContent = `HP: ${hpComputer}`;
 
-  // Calcular ganador
-  const winner = setWinner(hpPlayer, hpComputer);
-  resultElement.textContent = winner;
 }
 
 //Obtiene pokemon de computer
@@ -114,25 +106,27 @@ function attack1(playerChoice, computerChoice) {
     hpComputer -= 20;
     alert("Attack1, -20");
   }
-  /* ElementHpComputer.textContent =`HP: ${hpComputer}`; */
+  ElementHpComputer.textContent = `HP: ${hpComputer}`;
+  setWinner();
 
 }
 
 function attack2() {
   hpComputer -= 20;
   alert("Attack2, -20");
-  /*   ElementHpComputer.textContent = `HP: ${hpComputer}`;*/
+  ElementHpComputer.textContent = `HP: ${hpComputer}`;
+  setWinner();
 }
 
 //Ganador
 
-function setWinner(hpPlayer, hpComputer) {
-
+function setWinner() {
+  console.log(hpComputer);
+  console.log(hpPlayer);
   if (hpComputer <= 0) {
-    return alert("GANASTE");
-  } elseif(hpPlayer <= 0)
-  {
-    return ("PERDISTE");
+    alert("GANASTE");
+  } else if (hpPlayer <= 0) {
+    alert("PERDISTE");
   }
 }
 

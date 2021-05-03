@@ -128,12 +128,7 @@ p{
 
   border: 1px solid white;
   padding: 10px;
-  box-shadow: 0 0 10px red;
   background-color: #252525;
-}
-
-.battle-zone{
-  display: none;
 }
 
 

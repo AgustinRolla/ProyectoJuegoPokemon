@@ -52,7 +52,8 @@ const ElementHpComputer = document.getElementById("hp-computer");
 
 function startGame(event) {
 
-  document.getElementById("battle-zone").style.display = "block";
+  ElementHpComputer.textContent = `HP: 100`;
+  ElementHpPlayer.textContent = `HP: 100`;
 
   // Obtener elección del jugador
   const button = event.currentTarget;
@@ -61,7 +62,6 @@ function startGame(event) {
   // Obtener elección de la computadora
   const computerChoice = getComputerChoice();
 
-  // Mostrar resultado de pokemones
   //Pokemon elegido por player
   playerChoiceElement.setAttribute("src", `imgs/${playerChoice}.png`);
   //Ataques del pokemon elegido por player
@@ -73,9 +73,14 @@ function startGame(event) {
   //Ataques
 
   attackType.addEventListener("click", () => attack1(playerChoice, computerChoice));
+  attackType.addEventListener("click", () => getAttackComputer);
+
   attackNormal.addEventListener("click", attack2);
+  attackNormal.addEventListener("click", () => getAttackComputer);
 
-
+  delete attackType;
+  delete attackNormal;
+  
 }
 
 //Obtiene pokemon de computer
@@ -90,6 +95,49 @@ function getComputerChoice() {
 }
 
 //Funcion Ataques
+
+//Ataque Computer
+function getAttackComputer() {
+  // Obtener un valor aleatorio
+  const attackComputer = Math.floor(Math.random() * 2);
+  console.log(attackComputer)
+  // Retornar elección
+  if (attackComputer === 1) {
+    return attack1Computer(playerChoice, computerChoice)
+  } else {
+    return attack2Computer()
+  }
+  
+}
+
+function attack1Computer(playerChoice, computerChoice) {
+
+  if (
+    (computerChoice === "bulbasaur" && playerChoice === "squirtle") ||
+    (computerChoice === "charmander" && playerChoice === "bulbasaur") ||
+    (computerChoice === "squirtle" && playerChoice === "charmander")
+  ) {
+    hpPlayer -= 40;
+    alert("Attack1, -40");
+  } else if (playerChoice === computerChoice) {
+    playerChoice -= 30;
+    alert("Attack1, -30");
+  } else {
+    playerChoice -= 20;
+    alert("Attack1, -20");
+  }
+  ElementHpPlayer.textContent = `HP: ${hpPlayer}`;
+  setWinner();
+  }
+
+function attack2Computer() {
+  playerChoice -= 20;
+  alert("Attack2, -20");
+  ElementHpPlayer.textContent = `HP: ${hpPlayer}`;
+  setWinner();
+}
+
+//Ataques player
 function attack1(playerChoice, computerChoice) {
 
   if (
@@ -119,14 +167,15 @@ function attack2() {
 }
 
 //Ganador
-
 function setWinner() {
-  console.log(hpComputer);
-  console.log(hpPlayer);
   if (hpComputer <= 0) {
     alert("GANASTE");
+    delete attackType;
+    delete attackNormal;
   } else if (hpPlayer <= 0) {
     alert("PERDISTE");
+    delete attackType;
+    delete attackNormal;
   }
 }
 

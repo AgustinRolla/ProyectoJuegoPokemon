@@ -52,9 +52,12 @@ const ElementHpComputer = document.getElementById("hp-computer");
 
 function startGame(event) {
 
+  hpComputer = 100;
+  hpPlayer = 100;
+
   ElementHpComputer.textContent = `HP: 100`;
   ElementHpPlayer.textContent = `HP: 100`;
-  
+    
   // Obtener elección del jugador
   const button = event.currentTarget;
   const playerChoice = button.dataset.choice;
@@ -92,6 +95,9 @@ function getComputerChoice() {
 //Funcion Ataques
 //Ataques player
 function attack1(playerChoice, computerChoice) {
+  if (hpPlayer <= 0) {
+    return null;
+  }
   if (
     (playerChoice === "bulbasaur" && computerChoice === "squirtle") ||
     (playerChoice === "charmander" && computerChoice === "bulbasaur") ||
@@ -108,9 +114,13 @@ function attack1(playerChoice, computerChoice) {
   }
   ElementHpComputer.textContent = `HP: ${hpComputer}`;
   setWinner();
+
 }
 
 function attack2() {
+  if (hpPlayer <= 0) {
+    return null;
+  }
   hpComputer -= 15;
   alert("Your pokemon has used Attack 1 with a damage of 15hp");
   ElementHpComputer.textContent = `HP: ${hpComputer}`;
@@ -119,6 +129,9 @@ function attack2() {
 
 //Ataque Computer
 function getAttackComputer() {
+  if (hpComputer <= 0 || hpPlayer <= 0) {
+    return null;
+  }
   // Obtener un valor aleatorio
   const attackComputer = Math.floor(Math.random() * 2);
   // Retornar elección
@@ -129,18 +142,18 @@ function getAttackComputer() {
   }
 }
 
-function attack1Computer(computerChoice, playerChoice) {
-  if (
+function attack1Computer(computerChoice, playerChoice){
+  if(
     (computerChoice === "bulbasaur" && playerChoice === "squirtle") ||
     (computerChoice === "charmander" && playerChoice === "bulbasaur") ||
     (computerChoice === "squirtle" && playerChoice === "charmander")
-  ) {
+  ){
     hpPlayer -= 30;
     alert("Your pokemon has received Attack 1 with a damage of 30hp");
-  } else if (computerChoice === playerChoice) {
+  }else if(computerChoice === playerChoice){
     hpPlayer -= 20;
     alert("Your pokemon has received Attack 1 with a damage of 20hp");
-  } else {
+  }else{
     hpPlayer -= 10;
     alert("Your pokemon has received Attack 1 with a damage of 10hp");
   }
@@ -159,12 +172,18 @@ function attack2Computer() {
 function setWinner() {
   if (hpComputer <= 0) {
     alert("GANASTE");
+
     ElementHpComputer.textContent = `HP: KO`;
   } else if (hpPlayer <= 0) {
     alert("PERDISTE");
     ElementHpPlayer.textContent = `HP: KO`;
   }
 }
+
+//Resteo juego
+/* fuction resetGame(){
+  
+} */
 
 
 

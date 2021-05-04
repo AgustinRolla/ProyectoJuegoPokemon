@@ -13,20 +13,18 @@ Para comenzar a jugar, se debe presionar sobre uno de los botones, ubicados sobr
 ### Variación de los puntos de daño según tipo
 
 Los puntos de daño de los pokemones varía según el pokemon elegido por el jugador y el oponente y es potenciado x0.5, x1.0 o x1.5.
-Planta:
 
+Planta:
 - Contra Fuego x0.5
 - Contra Planta x1.0
 - Contra Agua x1.5
 
 Fuego:
-
 - Contra Agua x0.5
 - Contra Fuego x1.0
 - Contra Planta x1.5
 
 Agua:
-
 - Contra Planta x0.5
 - Contra Agua x1.0
 - Contra Fuego x1.5

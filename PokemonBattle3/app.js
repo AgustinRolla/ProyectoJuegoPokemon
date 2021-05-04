@@ -1,4 +1,3 @@
-//battle.html
 const playerChoiceElement = document.getElementById("playerChoice");
 const computerChoiceElement = document.getElementById("computerChoice");
 
@@ -6,14 +5,11 @@ const resultElement = document.getElementById("result");
 
 const buttons = document.querySelectorAll("button");
 
-buttons.forEach((button) => button.addEventListener("click", startGame));
+let buttonbulbasaur = document.getElementById("bulbasaur");
+let buttoncharmander = document.getElementById("charmander");
+let buttonsquirtle = document.getElementById("squirtle");
 
-//Sonido de pokemones mouseover
-var buttonbulbasaur = document.getElementById("bulbasaur");
-var buttoncharmander = document.getElementById("charmander");
-var buttonsquirtle = document.getElementById("squirtle");
-
-var overmouse = onmouseover;
+let overmouse = onmouseover;
 
 buttonbulbasaur.addEventListener(overmouse, playBulbaSound);
 buttoncharmander.addEventListener(overmouse, playCharmaSound);
@@ -41,17 +37,17 @@ function playSquirSound() {
   musicSound.play();
 }
 
-var hpComputer = 100;
-var hpPlayer = 100;
+let hpComputer = 100;
+let hpPlayer = 100;
 
 const attackElement = document.getElementById("attack1");
 const attackNormal = document.getElementById("attack2");
 const attackType = document.getElementById("attack1");
 const ElementHpPlayer = document.getElementById("hp-player");
 const ElementHpComputer = document.getElementById("hp-computer");
+let firstTime = false
 
 function startGame(event) {
-
   hpComputer = 100;
   hpPlayer = 100;
 
@@ -75,10 +71,11 @@ function startGame(event) {
 
   //Ataques
 
-  attackType.addEventListener("click", () => attack1(playerChoice, computerChoice) & getAttackComputer());
-  
-  attackNormal.addEventListener("click", () => attack2() & getAttackComputer());
-  
+  if (firstTime === false) {
+    attackType.addEventListener("click", () => doAttacks(playerChoice, computerChoice));
+    attackNormal.addEventListener("click", () => doAttacks2(playerChoice, computerChoice));
+    firstTime = true
+  }
 }
 
 //Obtiene pokemon de computer
@@ -93,6 +90,15 @@ function getComputerChoice() {
 }
 
 //Funcion Ataques
+function doAttacks(playerChoice, computerChoice) {
+  attack1(playerChoice, computerChoice)
+  setTimeout(getAttackComputer, 1000)
+}
+
+function doAttacks2(playerChoice, computerChoice) {
+  attack2()
+  setTimeout(() => getAttackComputer(playerChoice, computerChoice), 1000)
+}
 //Ataques player
 function attack1(playerChoice, computerChoice) {
   if (hpPlayer <= 0) {
@@ -122,13 +128,13 @@ function attack2() {
     return null;
   }
   hpComputer -= 15;
-  alert("Your pokemon has used Attack 1 with a damage of 15hp");
+  alert("Your pokemon has used Attack 2 with a damage of 15hp");
   ElementHpComputer.textContent = `HP: ${hpComputer}`;
   setWinner();
 }
 
 //Ataque Computer
-function getAttackComputer() {
+function getAttackComputer(playerChoice, computerChoice) {
   if (hpComputer <= 0 || hpPlayer <= 0) {
     return null;
   }
@@ -142,7 +148,7 @@ function getAttackComputer() {
   }
 }
 
-function attack1Computer(computerChoice, playerChoice){
+function attack1Computer(playerChoice, computerChoice){
   if(
     (computerChoice === "bulbasaur" && playerChoice === "squirtle") ||
     (computerChoice === "charmander" && playerChoice === "bulbasaur") ||
@@ -172,18 +178,12 @@ function attack2Computer() {
 function setWinner() {
   if (hpComputer <= 0) {
     alert("GANASTE");
-
     ElementHpComputer.textContent = `HP: KO`;
   } else if (hpPlayer <= 0) {
     alert("PERDISTE");
     ElementHpPlayer.textContent = `HP: KO`;
   }
 }
-
-//Resteo juego
-/* fuction resetGame(){
-  
-} */
 
 
 

@@ -2,6 +2,4 @@ Las funciones de ataques del pokemon oponente me están funcionando 'bien', se l
 
 Sumado a eso, intenté ponerle un cooldown o timeout para retrasar unos 2/3 el ataque del pokemon oponente para que no sea todo tan seguido y haya una minima pausa pero cada vez que lo implementaba, se me rompía al intentar llamar a esa función. Cómo se puede hacer?
 
-Luego de seleccionar y jugar con un pokemon, cuando quiero elegir otro y ejecuto uno de las funciones de ataque, me trae en cadena todos los ataques realizados con el pokemon anterior con el que jugué. Cómo hago para reiniciar el juego? Intenté borrar las variables al final de startGAME 
-
-Y otra consulta, el ReadMe lo hacemos en inglés?
+Luego de seleccionar y jugar con un pokemon, cuando quiero elegir otro y ejecuto uno de las funciones de ataque, me trae en cadena todos los ataques realizados con el pokemon anterior con el que jugué. Cómo hago para reiniciar el juego? La única forma que encontré para solucionarlo es que el juego, una vez finalizado se redirija a la la página index pero no me parece que quede muy bien.

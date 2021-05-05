@@ -1,5 +1,5 @@
-const playerChoiceElement = document.getElementById("playerChoice");
-const computerChoiceElement = document.getElementById("computerChoice");
+const playerChoiceElement = document.getElementById("playerChoiceImage");
+const computerChoiceElement= document.getElementById("computerChoiceImage");
 const resultElement = document.getElementById("result");
 const buttons = document.querySelectorAll("button");
 
@@ -41,7 +41,11 @@ let hpComputer = 100;
 let hpPlayer = 100;
 let firstTime = false
 
+let playerChoice = buttoncharmander.dataset.choice;
+let computerChoice = computerChoiceElement.dataset.choice;
+
 function startGame(event) {
+
   hpComputer = 100;
   hpPlayer = 100;
 
@@ -49,19 +53,17 @@ function startGame(event) {
   ElementHpPlayer.textContent = `HP: 100`;
     
   const button = event.currentTarget;
-  const playerChoice = button.dataset.choice;
-  const computerChoice = getComputerChoice();
+  playerChoice = button.dataset.choice;
+  computerChoice = getComputerChoice();
 
   playerChoiceElement.setAttribute("src", `imgs/${playerChoice}.png`);
   attackElement.setAttribute("src", `imgs/attacks/${playerChoice}.png`);
   computerChoiceElement.setAttribute("src", `imgs/${computerChoice}.png`);
-
-  if (firstTime === false) {
-    attackType.addEventListener("click", () => doAttacks(playerChoice, computerChoice));
-    attackNormal.addEventListener("click", () => doAttacks2(playerChoice, computerChoice));
-    firstTime = true
-  }
+ 
 }
+
+attackType.addEventListener("click", () => doAttacks(playerChoice, computerChoice));
+attackNormal.addEventListener("click", () => doAttacks2(playerChoice, computerChoice));
 
 const possibleChoices = ["bulbasaur", "charmander", "squirtle"];
 
@@ -71,13 +73,13 @@ function getComputerChoice() {
 }
 
 function doAttacks(playerChoice, computerChoice) {
-  attack1(playerChoice, computerChoice)
-  setTimeout(getAttackComputer, 1000)
+  attack1(playerChoice, computerChoice);
+  setTimeout(getAttackComputer(playerChoice, computerChoice), 1000);
 }
 
 function doAttacks2(playerChoice, computerChoice) {
-  attack2()
-  setTimeout(() => getAttackComputer(playerChoice, computerChoice), 1000)
+  attack2();
+  setTimeout(() => getAttackComputer(playerChoice, computerChoice), 1000);
 }
 
 function attack1(playerChoice, computerChoice) {
@@ -153,12 +155,10 @@ function attack2Computer() {
 function setWinner() {
   if (hpComputer <= 0) {
     ElementHpComputer.textContent = `HP: KO`;
-    alert("YOU WIN!! The game will be restart");
-    setTimeout(window.location="battle.html", 5000);
+    alert("YOU WIN!!");
     } else if (hpPlayer <= 0) {
     ElementHpPlayer.textContent = `HP: KO`;
-    alert("YOU LOST!!  The game will be restart");
-    setTimeout(window.location="battle.html", 5000);
+    alert("YOU LOST!!");
   }
 }
 
